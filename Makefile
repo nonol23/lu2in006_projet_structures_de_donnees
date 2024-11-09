@@ -1,28 +1,24 @@
-PROGRAMS = main mainTIME
+PROGRAMS = mainH mainTIME
 
 all : $(PROGRAMS)
 
+mainTIME : mainTIME.o biblioH.o entreeSortieH.o
+	gcc -ggdb -o  mainTIME mainTIME.o biblioH.o entreeSortieH.o
 
-mainTIME : mainTIME.o biblioLC.o entreeSortieLC.o 
-	gcc -ggdb -o  mainTIME mainTIME.o biblioLC.o entreeSortieLC.o
+mainH : mainH.o biblioH.o entreeSortieH.o
+	gcc -ggdb -o  mainH mainH.o biblioH.o entreeSortieH.o
 
-main : main.o biblioLC.o entreeSortieLC.o 
-	gcc -ggdb -o  main main.o biblioLC.o entreeSortieLC.o
- 
-
-main.o : main.c biblioLC.h entreeSortieLC.h
-	gcc -c  main.c
-
-mainTIME.o : mainTIME.c biblioLC.h entreeSortieLC.h
+mainTIME.o : mainTIME.c biblioH.h entreeSortieH.h
 	gcc -c  mainTIME.c
 
+mainH.o : mainH.c biblioH.h entreeSortieH.h
+	gcc -c  mainH.c
 
-biblioLC.o : biblioLC.c biblioLC.h
-	gcc -c  biblioLC.c
+entreeSortieH.o : entreeSortieH.c biblioH.h entreeSortieH.h
+	gcc -c  entreeSortieH.c
 
-entreeSortieLC.o : entreeSortieLC.c biblioLC.h entreeSortieLC.h
-	gcc -c  entreeSortieLC.c
-
+biblioH.o : biblioH.c biblioH.h
+	gcc -c  biblioH.c
 
 clean : 
 	rm -f *.o main 
